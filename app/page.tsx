@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 type Post = {
   id: number;
@@ -10,10 +11,11 @@ export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    // Fetch data from DRF API
-    fetch("https://my-drf-app.onrender.com/api/posts/")
-      .then((response) => response.json())
-      .then((data) => setPosts(data))
+    // Fetch data from DRF API using Axios
+    axios.get("https://my-drf-app.onrender.com/api/posts/")
+      .then((response) => {
+        setPosts(response.data);
+      })
       .catch((error) => {
         console.error("Error fetching posts:", error);
       });
