@@ -14,7 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     // Fetch data from DRF API using Axios
-    axios.get("https://my-drf-app.onrender.com/api/posts/")
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/`)
       .then((response) => {
         setPosts(response.data);
       })
